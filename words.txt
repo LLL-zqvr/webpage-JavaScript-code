@@ -1,0 +1,8 @@
+document		文件
+Prompt box		提示框
+console         控制台
+line feed       换行
+global variable 全局变量
+local variable  局部变量
+template        模板
+arrow           箭头

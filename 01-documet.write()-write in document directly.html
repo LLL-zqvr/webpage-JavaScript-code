@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document直接写入文件中</title>
+</head>
+<body>
+    <p>这是一个段落</p>
+    <script>
+        document.write("<p>这是另一个段落</p>");
+    </script>
+    <p>只能在输出流中使用document.write()，若在文档已加载后使用会被覆盖</p>
+    <button type="button" onclick="my()">就像这样被覆盖</button>
+    <script>
+        function my(){
+            document.write("啊？");
+        }
+    </script>
+</body>
+</html>

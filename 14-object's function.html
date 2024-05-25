@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的方法</title>
+</head>
+<body>
+    <p>创建一个对象</p>
+    <p id="demo"></p>
+    <script>
+        var person = {
+            firstname : "kaven", 
+            lastname : "john",
+            age : 15, 
+            eyecolor : "blue",
+            //记得不要少了this关键字！
+            fullname : function (){
+                return this.firstname + " " + this.lastname;
+            }
+        };
+        document.getElementById("demo").innerHTML = person.fullname();
+    </script>
+</body>
+</html>

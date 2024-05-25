@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查看数据类型</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var lenth = 10;
+        var x = 20.00;     //number 通过数字字面量赋值
+        var points = x * 10;//number 通过表达式字面量赋值
+        var lastName = "Kaven";//string 通过字符串字面量赋值
+        var cars = ["row", "glass", "red"];//array 通过数组字面量赋值
+        var person = {name : "loisa", age : 12};//object 通过对象字面量赋值
+        document.getElementById("demo").innerHTML = typeof person;
+    </script>
+</body>
+</html>

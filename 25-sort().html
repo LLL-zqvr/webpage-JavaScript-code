@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>语法为：array.sort(sortfunction)</p>
+    <br>
+    <p id="demo"></p>
+    <script>
+       
+            var a = [1,6,3,78,11];
+            //document.getElementById("demo").innerHTML = a.sort(function(x,y){return x-y});
+            //document.getElementById("demo").innerHTML = a.sort(function(x,y){return y-x});
+            document.getElementById("demo").innerHTML = a.sort((a,b)=>{return a-b});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="my()">点这里看数组值</button>
+    <p id="demo"></p>
+    <script>
+        //for of 不能迭代对象的值！
+        function my(){
+            var cars = ["sf", "dfg"];
+            var x;
+            var text = "";
+            for(x of cars){
+                text = text + x + " ";
+            }
+            document.getElementById("demo").innerHTML = text;
+        }
+    </script>
+</body>
+</html>

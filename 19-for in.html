@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for in的使用</title>
+</head>
+<body>
+    <button type="button" onclick="my()">点这里看人物属性</button>
+    <p id="demo"></p>
+    <script>
+        function my() {
+            var person = {
+                name : "Kaven",
+                age : 16,
+                number : 24
+
+            };
+            var x;
+            var text = "";
+            //for in 可以用来遍历对象的属性或者数组的索引
+            for(x in person){
+                text = text + " " + x;
+            }
+            document.getElementById("demo").innerHTML = text;
+        }   
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局变量</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var a = "a是一个全局变量";
+        my();
+        function my ()
+        {
+            document.getElementById("demo").innerHTML = "我可以使用:" + a;
+            
+        }
+        
+    </script>
+</body>
+</html>

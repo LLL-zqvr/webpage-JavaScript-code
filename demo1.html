@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="show()">点击获取js对象的值</button>
+    <div id="demo">被替换成新的值</div>
+    <script>
+        let person = {
+            fristname : "kaven",
+            lastname : "john",
+            age : 15,
+            getFullNname() {
+                return `这是 ${this.fristname} ${this.lastname}`;
+            }
+
+        };
+        let show = () => {
+            document.getElementById("demo").innerHTML = person.getFullNname();
+        }
+    </script>
+</body>
+</html>
