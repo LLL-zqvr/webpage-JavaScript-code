@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homework02</title>
+    <title>Document</title>
 </head>
 <body>
-    <input type="textar" id="demo" onchange="my()">
+    <select name="course" onchange="loop(this.value)">
+        <option ></option>
+        <option value="1">Java</option>
+        <option value="2">Web</option>
+        <option value="3">Python</option>
+    </select>
+    <p id="teacherName"></p>
     <script>
-        function my(){
-
-            var persons =
+             let loop = (id) => {
+            let courses =
                 [
                     { "id": 1, "courseName": "Java", "teacherName": "BO" },
                     { "id": 2, "courseName": "Web", "teacherName": "SUN" },
                     { "id": 3, "courseName": "Python", "teacherName": "ZHANG" }
                 ];
-            var text = "";
-            // for(var i; i < persons.length;i++){
-            //     text = text + persons[i].id + " " + persons[i].courseName + " " + persons[i].teacherName;
-            // }
-            for(i of persons){
-                text += i;
-            }
-            document.getElementById("demo").value = text;
-                    
+
+            let course = courses.find(c => c.id == id);
+            document.getElementById("teacherName").innerHTML = course != null ? course.teacherName:"";
         }
+        
         
     </script>
 </body>
