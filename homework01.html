@@ -6,11 +6,15 @@
     <title>homework01</title>
 </head>
 <body>
-    <input type="text" onkeyup="my(this)">
+    <input style = "width: 500px;" type="text" onkeyup="my(this)">
     <script>
+
+        let timeoutnum = 0;
+
         function my(input){
-            //input.value = input.value.toUpperCase();
-            setTimeout(function(){input.value = input.value.toUpperCase()},3000);
+            
+            clearTimeout(timeoutnum);
+            timeoutnum = setTimeout(function(){input.value = input.value.toUpperCase()},2000);
         }
         
     </script>
