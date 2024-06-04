@@ -20,7 +20,8 @@
     </head>
 - Microsoft CDN:
     <head>
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js">
+        </script>
     </head>
 - Staticfile CDN:
     <head>
@@ -47,11 +48,27 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 **Tips:**
 实例中的所有 jQuery 函数位于一个 document ready 函数中,这是为了防止文档在完全加载（就绪）之前运行 jQuery 代码，即在 DOM 加载完成后才可以对 DOM 进行操作。<br>
 如果在文档没有完全加载之前就运行函数，操作可能失败。下面是两个具体的例子：
-- 试图隐藏一个不存在的元素
-- 获得未完全加载的图像的大小
+- 试图隐藏一个不存在的元素.
+- 获得未完全加载的图像的大小.
   
 ### jQuery 选择器
 介绍:
 - jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。
 - jQuery 选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。 它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。
 - jQuery 中所有选择器都以**美元符号**开头：**$()**。
+  
+#### 元素选择器
+介绍:
+- jQuery 元素选择器基于元素名选取元素。
+- 在页面中选取所有 <p> 元素语法如下:`$("p")`。
+  
+#### id 选择器
+介绍：
+- jQuery #id 选择器通过 HTML 元素的 id 属性选取指定的元素。
+- 页面中元素的 id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 #id 选择器。
+- 通过 id 选取元素语法如下：`$("#test")`。
+
+#### .class 选择器
+介绍：
+- jQuery 类选择器可以通过指定的 class 查找元素。
+- 语法如下：`$(".test")`。
