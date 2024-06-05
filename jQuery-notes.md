@@ -104,24 +104,36 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
         4. **mouseleave**       当鼠标指针离开被选元素时触发
         5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。
                                 如:<br>
-                                    `$("p").hover(function(){<br>
-                                        $("p").css("background-color","yellow");<br>
-                                        },function(){<br>
-                                        $("p").css("background-color","pink");<br>
-                                    });`<br>
+                                    $("p").hover(function(){
+                                        $("p").css("background-color","yellow");
+                                        },function(){
+                                        $("p").css("background-color","pink");
+                                    });
         另: 如果只指定一个函数，则 `mouseenter` 和 `mouseleave` 都执行它。
-
+        6. **mousedown()**              当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+        7. **mouseup()**        当在元素上松开鼠标按钮时，会发生 mouseup 事件。
     2. 键盘事件
-        1. **keypress**         
-        2. **keydown**
-        3. **keyup**
+        1. **keypress**         键被按下触发      
+        2. **keydown**          键按下的过程触发
+        3. **keyup**            键被松开触发
     3. 表单事件
-        1. **submit**
-        2. **change**
-        3. **focus**
-        4. **blur**
+        1. **submit**           提交表单触发（另：只适用于<form>）
+        2. **change**           当元素的值改变时发生 change 事件（仅适用于表单字段）。当用于 select 元素时，change 事件会在选择某个选项时发生。当用于 text field 或 text area 时，change 事件会在元素失去焦点时发生。
+        3. **focus**            当元素获得焦点时（当通过鼠标点击选中元素或通过 tab 键定位到元素时），发生 focus 事件。另：该方法通常与 blur() 方法一起使用。
+        4. **blur**             当元素失去焦点时发生 blur 事件。
     4. 文档/窗口事件
-        1. **load**
-        2. **resize**
-        3. **scroll**
-        4. **unload**	 
+        1. **load**             当指定的元素已加载时，会发生 load 事件。（另：**load() 方法在 jQuery 版本 1.8 中已废弃！**）
+        2. **resize**           当调整浏览器窗口大小时，发生 resize 事件。
+        3. **scroll**           当用户滚动指定的元素时，会发生 scroll 事件。
+        4. **unload**	        当用户离开页面时，会发生 unload 事件。另：**unload() 方法在 jQuery 版本 1.8 中被废弃，在 3.0 版本被移除。Firefox 与 Chrome 会阻止弹窗，所以没办法看到效果。**
+
+### jQuery 效果
+
+#### 隐藏和显示
+介绍：通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素。
+语法：
+- $(selector).hide(speed,callback);
+- $(selector).show(speed,callback);
+可选的 speed 参数规定隐藏/显示的**速度**（会得到动态的效果），可以取以下值："slow"、"fast" 或毫秒。
+可选的 callback回调函数 参数是隐藏或显示完成后所执行的函数名称。之间还可以加上参数，是一个字符串，表示过渡使用哪种缓动函数。（jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）
+具体见：[33-hide() and show() (callback)]()
