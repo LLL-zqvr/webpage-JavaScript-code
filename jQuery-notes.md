@@ -101,11 +101,18 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
         1. **click**            单击元素时触发
         2. **dblclick**         双击元素时触发
         3. **mouseenter**       当鼠标指针穿过（进入）被选元素时触发(与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意子元素时也会被触发。)
-        4. **mouseleave**      当鼠标指针离开被选元素时触发
+        4. **mouseleave**       当鼠标指针离开被选元素时触发
         5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。
-        另: 如果只指定一个函数，则 mouseenter 和 mouseleave 都执行它。
+                                如：
+                                `$("p").hover(function(){
+                                        $("p").css("background-color","yellow");
+                                    },function(){
+                                        $("p").css("background-color","pink");
+                                    });`
+        另: 如果只指定一个函数，则 `mouseenter` 和 `mouseleave` 都执行它。
+
     2. 键盘事件
-        1. **keypress**
+        1. **keypress**         
         2. **keydown**
         3. **keyup**
     3. 表单事件
