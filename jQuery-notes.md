@@ -102,13 +102,13 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
         2. **dblclick**         双击元素时触发
         3. **mouseenter**       当鼠标指针穿过（进入）被选元素时触发(与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意子元素时也会被触发。)
         4. **mouseleave**       当鼠标指针离开被选元素时触发
-        5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。
-                                如:<br>
-                                    $("p").hover(function(){
-                                        $("p").css("background-color","yellow");
-                                        },function(){
-                                        $("p").css("background-color","pink");
-                                    });
+        5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。<br>
+                                如:
+                                    >$("p").hover(function(){
+                                    >    $("p").css("background-color","yellow");
+                                    >    },function(){
+                                    >    $("p").css("background-color","pink");
+                                    >});
         另: 如果只指定一个函数，则 `mouseenter` 和 `mouseleave` 都执行它。
         6. **mousedown()**              当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
         7. **mouseup()**        当在元素上松开鼠标按钮时，会发生 mouseup 事件。
@@ -135,5 +135,5 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 - $(selector).hide(speed,callback);
 - $(selector).show(speed,callback);
 可选的 speed 参数规定隐藏/显示的**速度**（会得到动态的效果），可以取以下值："slow"、"fast" 或毫秒。
-可选的 callback回调函数 参数是隐藏或显示完成后所执行的函数名称。之间还可以加上参数，是一个字符串，表示过渡使用哪种缓动函数。（jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）
-具体见：[33-hide() and show() (callback)]()
+可选的 callback回调函数 参数是隐藏或显示完成后所执行的函数名称。之间还可以加上参数，是一个字符串，表示过渡使用哪种缓动函数。（jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）<br>
+具体见：[33-hide() and show() (callback)](./code/33-hide()%20and%20show()%20(callback).html)
