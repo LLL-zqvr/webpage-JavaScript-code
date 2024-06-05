@@ -98,34 +98,34 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
     4. 在事件中经常使用术语"触发"（或"激发"）例如： "当您按下按键时触发 keypress 事件"。
 - 常见的事件：
 #### 鼠标事件
-        1. **click**            单击元素时触发
-        2. **dblclick**         双击元素时触发
-        3. **mouseenter**       当鼠标指针穿过（进入）被选元素时触发(与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意子元素时也会被触发。)
-        4. **mouseleave**       当鼠标指针离开被选元素时触发
-        5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。<br>
-                                如:
-                                    `$("p").hover(function(){
-                                        $("p").css("background-color","yellow");
-                                        },function(){
-                                        $("p").css("background-color","pink");
-                                    });`
+1. **click**            单击元素时触发
+2. **dblclick**         双击元素时触发
+3. **mouseenter**       当鼠标指针穿过（进入）被选元素时触发(与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意子元素时也会被触发。)
+4. **mouseleave**       当鼠标指针离开被选元素时触发
+5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。<br>
+                        如:
+                            `$("p").hover(function(){
+                                $("p").css("background-color","yellow");
+                                },function(){
+                                $("p").css("background-color","pink");
+                            });`
         另: 如果只指定一个函数，则 `mouseenter` 和 `mouseleave` 都执行它。
-        6. **mousedown()**              当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
-        7. **mouseup()**        当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+6. **mousedown()**              当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+7. **mouseup()**        当在元素上松开鼠标按钮时，会发生 mouseup 事件。
 #### 键盘事件
-        8. **keypress**         键被按下触发      
-        9. **keydown**          键按下的过程触发
-        10. **keyup**            键被松开触发
+1. **keypress**         键被按下触发      
+2. **keydown**          键按下的过程触发
+3.  **keyup**            键被松开触发
 #### 表单事件
-        11. **submit**           提交表单触发（另：只适用于<form>）
-        12. **change**           当元素的值改变时发生 change 事件（仅适用于表单字段）。当用于 select 元素时，change 事件会在选择某个选项时发生。当用于 text field 或 text area 时，change 事件会在元素失去焦点时发生。
-        13. **focus**            当元素获得焦点时（当通过鼠标点击选中元素或通过 tab 键定位到元素时），发生 focus 事件。另：该方法通常与 blur() 方法一起使用。
-        14. **blur**             当元素失去焦点时发生 blur 事件。
+1.  **submit**           提交表单触发（另：只适用于<form>）
+2.  **change**           当元素的值改变时发生 change 事件（仅适用于表单字段）。当用于 select 元素时，change 事件会在选择某个选项时发生。当用于 text field 或 text area 时，change 事件会在元素失去焦点时发生。
+3.  **focus**            当元素获得焦点时（当通过鼠标点击选中元素或通过 tab 键定位到元素时），发生 focus 事件。另：该方法通常与 blur() 方法一起使用。
+4.  **blur**             当元素失去焦点时发生 blur 事件。
 #### 文档/窗口事件
-        15. **load**             当指定的元素已加载时，会发生 load 事件。（另：**load() 方法在 jQuery 版本 1.8 中已废弃！**）
-        16. **resize**           当调整浏览器窗口大小时，发生 resize 事件。
-        17. **scroll**           当用户滚动指定的元素时，会发生 scroll 事件。
-        18. **unload**	        当用户离开页面时，会发生 unload 事件。另：**unload() 方法在 jQuery 版本 1.8 中被废弃，在 3.0 版本被移除。Firefox 与 Chrome 会阻止弹窗，所以没办法看到效果。**
+1.  **load**             当指定的元素已加载时，会发生 load 事件。（另：**load() 方法在 jQuery 版本 1.8 中已废弃！**）
+2.  **resize**           当调整浏览器窗口大小时，发生 resize 事件。
+3.  **scroll**           当用户滚动指定的元素时，会发生 scroll 事件。
+4.  **unload**	        当用户离开页面时，会发生 unload 事件。另：**unload() 方法在 jQuery 版本 1.8 中被废弃，在 3.0 版本被移除。Firefox 与 Chrome 会阻止弹窗，所以没办法看到效果。**
 
 ### jQuery 效果
 
