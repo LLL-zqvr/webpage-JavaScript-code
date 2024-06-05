@@ -104,9 +104,9 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
         4. **mouseleave**       当鼠标指针离开被选元素时触发
         5. **hover**            hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数。方法触发 `mouseenter` 和 `mouseleave` 事件。
                                 如：
-                                `$("p").hover(function(){
+                                    `$("p").hover(function(){
                                         $("p").css("background-color","yellow");
-                                    },function(){
+                                        },function(){
                                         $("p").css("background-color","pink");
                                     });`
         另: 如果只指定一个函数，则 `mouseenter` 和 `mouseleave` 都执行它。
