@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航组的手风琴效果</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* 左侧边栏容器宽度 */
+        .sidebar {
+            margin: 15px;
+            width: 300px;
+            background-color: #f1f1f1;
+        }
+        .sidebar-group ul {
+            list-style: none;
+        }
+        /* 导航标题 */
+        .sidebar-group > h2 {
+            padding: 15px 20px;
+            background-color: #3185bf;
+            color: white;
+        }
+        /* 标题悬浮样式 */
+        .sidebar-group >h2:hover {
+            /* 选中时鼠标是一个小手图标 */
+            cursor:pointer;
+            background-color: #000;
+        }
+        /* 二级菜单样式 */
+        .sidebar-group li a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        /* 二级菜单悬浮样式 */
+        .sidebar-group li a:hover {
+
+            /* 加粗，与700等值 */
+            font-weight: bold;
+            background-color: #555;
+            color: white;
+        }
+        /* 初始样式，将二级菜单隐藏，到jquery再修改display属性 */
+        /* .sidebar-group ul {
+            display: none;
+        } */
+
+    </style>
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(
+            () => {
+                $(".sidebar-group > h2").click(
+               
+                function() {
+                    let ul = $(this).next("ul");
+                    //同级的ul滑动切换
+                    ul.slideToggle();
+                    //其他级别的全部滑上
+                    $(".sidbar-group > ul").not(ul).slideUp();
+                }
+            )
+            }
+        )
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+            <div class="sidebar-group">
+                <h2>云技术管理</h2>
+                <ul>
+                    <li><a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-group">
+                <h2>安全管理</h2>
+                <ul>
+                    <li><a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+</body>
+</html>

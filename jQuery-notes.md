@@ -137,3 +137,35 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 可选的 speed 参数规定隐藏/显示的**速度**（会得到动态的效果），可以取以下值："slow"、"fast" 或毫秒。
 可选的 callback回调函数 参数是隐藏或显示完成后所执行的函数名称。之间还可以加上参数，是一个字符串，表示过渡使用哪种缓动函数。（jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）<br>
 具体见：[33-hide() and show() (callback)](./code/33-hide()%20and%20show()%20(callback).html)
+
+#### 淡入淡出
+- fadeIn()          jQuery fadeIn() 用于淡入已隐藏的元素。
+- fadeOut()         jQuery fadeOut() 方法用于淡出可见元素。
+- fadeToggle()      jQuery fadeToggle() 方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。如果元素已淡出，则 fadeToggle() 会向元素添加淡入效果;如果元素已淡入，则 fadeToggle() 会向元素添加淡出效果。
+- fadeTo()          jQuery fadeTo() 方法允许渐变为给定的不透明度（值介于 0 与 1 之间）。
+
+#### 滑动
+- slideDown()       jQuery slideDown() 方法用于向下滑动元素。
+- slideUp()         jQuery slideUp() 方法用于向上滑动元素。
+- slideToggle()     jQuery slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。
+
+####  动画
+介绍：jQuery animate() 方法用于创建自定义动画。
+语法：$(selector).animate({params},speed,callback);
+
+### js HTML
+
+#### 捕获元素
+- text()    设置或返回所选元素的文本内容(括号里面没值则是返回当前表单字段的值，若括号里面有值则是设置值)。
+- html()    设置或返回所选元素的内容（包括 HTML 标签）(括号里面没值则是返回当前表单字段的值，若括号里面有值则是设置值)。
+- val()     设置或返回表单字段的值(括号里面没值则是返回当前表单字段的值，若括号里面有值则是设置值)。
+- attr()    用于获取属性值。
+
+#### 添加元素
+- append() - 在被选元素的结尾插入内容
+- prepend() - 在被选元素的开头插入内容
+- after() - 在被选元素之后插入内容
+- before() - 在被选元素之前插入内容
+
+#### HTML方法
+- prop() 方法设置或返回被选元素的属性和值。当该方法用于返回属性值时，则返回第一个匹配元素的值。当该方法用于设置属性值时，则为匹配元素集合设置一个或多个属性/值对。

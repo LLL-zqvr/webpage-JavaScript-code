@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选取指定数量的东西至列表</title>
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(
+            () => {
+                const number = 2;
+                let clickboxs = $("input[name=items]");
+                
+                clickboxs.click(
+                    () => {
+                        let len = clickboxs.filter(":checked").length;
+                        let result = len >= number;
+                        clickboxs.not(":checked").prop("disabled",result);
+                    }
+                )
+                $("button").click(
+                            () => {
+                                let len = clickboxs.filter(":checked").length;
+                                $("p").text(len);
+                            }
+                        )
+                
+            }
+        )
+    </script>
+</head>
+
+<body>
+    <label for="">
+        <input type="checkbox" name="items">6TB机械键盘
+    </label>
+    <label for="">
+        <input type="checkbox" name="items">512GB SSD固态键盘
+    </label>
+    <label for="">
+        <input type="checkbox" name="items">16GB DDR4内存
+    </label>
+    <p></p>
+    <button>显示勾选个数</button>
+</body>
+</html>

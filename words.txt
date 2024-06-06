@@ -8,3 +8,5 @@ template            模板
 arrow               箭头
 element selector    元素选择器
 label selector      标签选择器
+navigation          导航
+accordion           手风琴
