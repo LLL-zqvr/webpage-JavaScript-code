@@ -114,12 +114,12 @@
                     }
                     
                     //分割字符串,得到选中课程的起始周和结束周。
-                    let begin = beginWeek(this);
-                    let end = endWeek(this);
+                    let begin = beginWeek(clickboxs.filter(":checked"));
+                    let end = endWeek(clickboxs.filter(":checked"));
                     //得到选中课程的上课时间（第几天上课）和上课节数
-                    let theday = day(this);
-                    let first = firstClass(this);
-                    let second = secondClass(this);
+                    let theday = day(clickboxs.filter(":checked"));
+                    let first = firstClass(clickboxs.filter(":checked"));
+                    let second = secondClass(clickboxs.filter(":checked"));
 
                     // clickboxs.not(":checked")
                     // .filter( 
@@ -135,10 +135,10 @@
                     .each( 
                     function (){
                         
-                          if(((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                          let result = ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
                                 &&(day(this)==theday)
-                                &&(firstClass(this)==first))
-                              $(this).prop("disabled",true);  
+                                &&(firstClass(this)==first);
+                              $(this).prop("disabled",result); 
                     }
                 )
 
