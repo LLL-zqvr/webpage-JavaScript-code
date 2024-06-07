@@ -120,27 +120,28 @@
                     let theday = day(this);
                     let first = firstClass(this);
                     let second = secondClass(this);
-                    
-                    
-                    //未选中的课程
-                    // let otherweek = $(other).parent().siblings(".week").text();
-                    // //分割字符串,得到未选中课程的起始周和结束周。
-                    // let otherbeginWeek = otherweek.split(' - ')[0];
-                    // let otherendweek = otherweek.split(' - ')[1];
-                    // //得到未选中课程的上课时间（第几天上课）和上课节数
-                    
-                    console.log(begin+" " +end+" "+theday+" "+first+" "+second);
-                    //周有重叠时，上课时间，上课节数也重叠
-                    //clickboxs.not(":checked").prop("disabled",true);
-                    // clickboxs.not(":checked")
-                    // .filter(other => {(beginWeek(other)>=begin&&beginWeek(other)<=end)||(endWeek(other)>=begin&&endWeek(other)<=end)})
-                    // .filter(other => {day(other)==theday})
-                    // .filter(other => {firstclass(other)==firstclass})
-                    // .prop("disabled",true);
 
+                    // clickboxs.not(":checked")
+                    // .filter( 
+                    // function(){
+                        
+                    //      return ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                    //             &&(day(this)==theday)
+                    //             &&(firstClass(this)==first)
+                    //             ;
+                    // })
+                    // .prop("disabled",true);
                     clickboxs.not(":checked")
-                    .filter(other => {day(other)==theday;console.log(other)})
-                    .prop("disabled",true);
+                    .each( 
+                    function (){
+                        
+                          if(((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                                &&(day(this)==theday)
+                                &&(firstClass(this)==first))
+                              $(this).prop("disabled",true);  
+                    }
+                )
+
 
 
                 }
