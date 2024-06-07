@@ -153,6 +153,15 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 介绍：jQuery animate() 方法用于创建自定义动画。
 语法：$(selector).animate({params},speed,callback);
 
+### jquery遍历
+- parent() 返回每个匹配元素的直接父元素。
+- parents() 返回匹配元素的所有祖先元素。
+- parentsUntil() 返回找到给定选择器参数的元素之前的所有祖先元素。
+- children() 返回匹配元素的所有直接子元素。
+- find() 返回匹配元素的所有子孙元素。
+- next() next() 方法返回被选元素的下一个同胞元素。该方法只返回一个元素。
+- siblings() siblings() 方法返回被选元素的所有同胞元素。可选参数来过滤对同胞元素的搜索。
+
 ### js HTML
 
 #### 捕获元素
