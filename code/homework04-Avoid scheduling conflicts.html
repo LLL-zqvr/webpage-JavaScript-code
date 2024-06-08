@@ -44,7 +44,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
+                <td class="index">1</td>
                 <td>数据库原理</td>
                 <td>3</td>
                 <td class="week">1 - 10</td>
@@ -53,7 +53,7 @@
                 <td><input type="checkbox" name="items"></td>
             </tr>
             <tr>
-                <td>2</td>
+                <td class="index">2</td>
                 <td>Web开发技术</td>
                 <td>2.5</td>
                 <td class="week">1 - 8</td>
@@ -62,7 +62,7 @@
                 <td><input type="checkbox" name="items"></td>
             </tr>
             <tr>
-                <td>3</td>
+                <td class="index">3</td>
                 <td>托福阅读</td>
                 <td>2</td>
                 <td class="week">1 - 5</td>
@@ -71,7 +71,7 @@
                 <td><input type="checkbox" name="items"></td>
                 </tr>
             <tr>
-                <td>4</td>
+                <td class="index">4</td>
                 <td>高级英语视听</td>
                 <td>2</td>
                 <td class="week">3 - 10</td>
@@ -80,7 +80,7 @@
                 <td><input type="checkbox" name="items"></td>
                 </tr>
             <tr>
-                <td>5</td>
+                <td class="index">5</td>
                 <td>Web系统框架</td>
                 <td>2.5</td>
                 <td class="week">10 - 17</td>
@@ -112,14 +112,29 @@
                     function secondClass(clickbox){
                         return $(clickbox).parent().siblings(".day").text()[4];
                     }
-                    
+                    let len = clickboxs.filter(":checked").length;
+                    // 
                     //分割字符串,得到选中课程的起始周和结束周。
-                    let begin = beginWeek(clickboxs.filter(":checked"));
-                    let end = endWeek(clickboxs.filter(":checked"));
+                    let begin = beginWeek(clickboxs.filter(":checked")[len-1]);
+                    let end = endWeek(clickboxs.filter(":checked")[len-1]);
                     //得到选中课程的上课时间（第几天上课）和上课节数
-                    let theday = day(clickboxs.filter(":checked"));
-                    let first = firstClass(clickboxs.filter(":checked"));
-                    let second = secondClass(clickboxs.filter(":checked"));
+                    let theday = day(clickboxs.filter(":checked")[len-1]);
+                    let first = firstClass(clickboxs.filter(":checked")[len-1]);
+                    let second = secondClass(clickboxs.filter(":checked")[len-1]);
+                    //
+                    let index = $(clickboxs).parent().siblings(".index").text();
+                    let clashes;
+                    // for(let i=1;i<=index;i++){
+
+                    //     clashes[i] = 
+                    // }
+                    //分割字符串,得到选中课程的起始周和结束周。
+                    // let begin = beginWeek(clickboxs.filter(this));
+                    // let end = endWeek(clickboxs.filter(this));
+                    // //得到选中课程的上课时间（第几天上课）和上课节数
+                    // let theday = day(clickboxs.filter(this));
+                    // let first = firstClass(clickboxs.filter(this));
+                    // let second = secondClass(clickboxs.filter(this));
 
                     // clickboxs.not(":checked")
                     // .filter( 
@@ -131,14 +146,29 @@
                     //             ;
                     // })
                     // .prop("disabled",true);
+                    console.log(begin+" "+end+" "+theday+" "+first+" "+second);
                     clickboxs.not(":checked")
                     .each( 
                     function (){
                         
-                          let result = ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
-                                &&(day(this)==theday)
-                                &&(firstClass(this)==first);
-                              $(this).prop("disabled",result); 
+                        //   let result = ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                        //         &&(day(this)==theday)
+                        //         &&(firstClass(this)==first);
+                        //       $(this).prop("disabled",result); 
+                        let lenth = clickboxs.filter(":checked").length;
+                        if(
+                            ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                                 &&(day(this)==theday)
+                                 &&(firstClass(this)==first)
+                                
+                                )
+                                 {
+                                    $(this).prop("disabled",true); 
+                                    }
+                         //if(flag==1&&lenth>1)$(this).prop("disabled",false); 
+
+                                 
+                                 
                     }
                 )
 
