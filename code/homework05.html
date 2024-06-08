@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>传入数字千分位加逗号并返回</title>
+
+</head>
+<body>
+    <input type="text">
+    <p></p>
+    <button>点我得到返回后的数</button>
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(
+            () =>{
+                
+            $("button").click(
+                () =>{
+                    //得到一个数的整数部分
+                    let integer = $("input").val().split(".")[0];
+                    //得到一个数的小数部分
+                    let decimals = $("input").val().split(".")[1];
+                    //得到反转数组
+                    let numbers = integer.split("").reverse();
+                    let count = 0;
+                    let p = 0;
+                    let result = [];
+                    for(let i=0;i<numbers.length;i++){
+                            count++;
+                            if(count==3){
+                                result[p++]=numbers[i];
+                                result[p++]=",";
+                                count=0;
+                            }
+                            else
+                            result[p++]=numbers[i];
+                    }
+                    
+                    let last =(result.reverse()).join("") ;
+                    last = last+"."+decimals;
+                    $("p").text(last);
+                }
+            )
+            }
+        )
+    </script>
+</body>
+</html>

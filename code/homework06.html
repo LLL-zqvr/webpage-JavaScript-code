@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>去重</title>
+</head>
+<body>
+    <p>[{ id: 9 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]</p>
+    <button>点我去重</button>
+    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(
+            ()=>{
+                const objs = [{ id: 9 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }];
+                $("button").click(
+                    ()=>{
+                       
+
+                        let count = 0;
+                        for(let i=0;i<objs.length;i++){
+                            for(let j=i+1;j<objs.length;j++){
+
+                                if(objs[i].id==objs[j].id)
+                                {
+                                    objs.splice(j,1);
+                                    j--;
+                                }
+                               
+                                
+                            }
+                        }
+                       
+
+                        let result="[";
+                        for(let i=0;i<objs.length;i++)
+                       {
+                         for(let key in objs[i]){
+                            result+="{";
+                            result+=key;
+                            result+=" : ";
+                            result+=objs[i][key];
+                            result+="} ";
+
+                       }
+                        }
+                        result+="]";
+                        //console.log(objs);
+                        $("p").text(result);
+                        
+                        
+
+                    }
+                )
+
+            }
+        )
+    </script>
+   
+</body>
+</html>
