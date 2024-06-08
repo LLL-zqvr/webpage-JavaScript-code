@@ -28,7 +28,7 @@
                     let result = [];
                     for(let i=0;i<numbers.length;i++){
                             count++;
-                            if(count==3){
+                            if(count==3&&i!=numbers.length-1){
                                 result[p++]=numbers[i];
                                 result[p++]=",";
                                 count=0;
