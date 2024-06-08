@@ -94,9 +94,7 @@
     $(document).ready(
         () => {
             let clickboxs = $("input[name=items]");
-            clickboxs.click(
-                function() {
-                    function beginWeek(clickbox){
+            function beginWeek(clickbox){
                         return $(clickbox).parent().siblings(".week").text().split(' - ')[0];
                     }
                     function endWeek(clickbox){
@@ -112,66 +110,93 @@
                     function secondClass(clickbox){
                         return $(clickbox).parent().siblings(".day").text()[4];
                     }
-                    let len = clickboxs.filter(":checked").length;
-                    // 
-                    //分割字符串,得到选中课程的起始周和结束周。
-                    let begin = beginWeek(clickboxs.filter(":checked")[len-1]);
-                    let end = endWeek(clickboxs.filter(":checked")[len-1]);
-                    //得到选中课程的上课时间（第几天上课）和上课节数
-                    let theday = day(clickboxs.filter(":checked")[len-1]);
-                    let first = firstClass(clickboxs.filter(":checked")[len-1]);
-                    let second = secondClass(clickboxs.filter(":checked")[len-1]);
-                    //
-                    let index = $(clickboxs).parent().siblings(".index").text();
-                    let clashes;
-                    // for(let i=1;i<=index;i++){
+                    //创建一维数组
+                    let clashes = [];
+                    //在一维数组的基础上创建二维数组
+                    for(let i=1;i<=clickboxs.length;i++)
+                    clashes[i]=[];
 
-                    //     clashes[i] = 
-                    // }
-                    //分割字符串,得到选中课程的起始周和结束周。
-                    // let begin = beginWeek(clickboxs.filter(this));
-                    // let end = endWeek(clickboxs.filter(this));
-                    // //得到选中课程的上课时间（第几天上课）和上课节数
-                    // let theday = day(clickboxs.filter(this));
-                    // let first = firstClass(clickboxs.filter(this));
-                    // let second = secondClass(clickboxs.filter(this));
-
-                    // clickboxs.not(":checked")
-                    // .filter( 
-                    // function(){
+            clickboxs.each(function(){
+                let begin = beginWeek(this);
+                    let end = endWeek(this);
+                    //得到每一个课程的上课时间（第几天上课）和上课节数
+                    let theday = day(this);
+                    let first = firstClass(this);
+                    let second = secondClass(this);
+                    let index = $(this).parent().siblings(".index").text();
+                    let nowIndex = 0;
+                    //console.log("**************");
+                    clickboxs.not(this).each(
                         
-                    //      return ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
-                    //             &&(day(this)==theday)
-                    //             &&(firstClass(this)==first)
-                    //             ;
-                    // })
-                    // .prop("disabled",true);
-                    console.log(begin+" "+end+" "+theday+" "+first+" "+second);
-                    clickboxs.not(":checked")
-                    .each( 
-                    function (){
-                        
-                        //   let result = ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
-                        //         &&(day(this)==theday)
-                        //         &&(firstClass(this)==first);
-                        //       $(this).prop("disabled",result); 
-                        let lenth = clickboxs.filter(":checked").length;
+                        function (){
+                            //console.log("==========================");
+                           // console.log(begin+" "+end+" "+theday+" "+first+" "+second);
+                            // console.log(beginWeek(this)+" "+endWeek(this)+" "+day(this)+" "+firstClass(this)+" "+secondClass(this))
+                            
                         if(
-                            ((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
-                                 &&(day(this)==theday)
+                            //为什么判断周的时候用下面的语句会导致错误。
+                            //((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+                            begin<=endWeek(this)&&end>=beginWeek(this)   
+                            &&(day(this)==theday)
                                  &&(firstClass(this)==first)
+
+                        )
+                        //if(begin<=endWeek(this)&&end>=beginWeek(this)&&day(this)===theday&&firstClass(this)===first)
+                        clashes[index][nowIndex++]=this;
+                        /*
+                        else
+                        {
+                            
+                            console.log(`(${beginWeek(this)}>=${begin}&&${beginWeek(this)}<=${end})||(${endWeek(this)}>=${begin}&&${endWeek(this)}<=${end})`);
+                            //console.log(beginWeek(this),begin,beginWeek(this),end+" "+firstClass(this)+" "+secondClass(this))
+                            if((beginWeek(this)>=begin&&beginWeek(this)<=end)||(endWeek(this)>=begin&&endWeek(this)<=end))
+
+                            //if(begin<=endWeek(this)&&end>=beginWeek(this))
+                            {console.log("false");}
+                        else {
+                            console.log("true");
+                            console.log(begin+""+endWeek(this)+""+end);
+                        }
+                            if((day(this)==theday))
+                            console.log("false");
+                            else console.log("true");
+                            if((firstClass(this)==first))
+                            console.log("false");
+                            else console.log("true");
+                        }
+                        */
+                         
+                                }
                                 
                                 )
-                                 {
-                                    $(this).prop("disabled",true); 
-                                    }
-                         //if(flag==1&&lenth>1)$(this).prop("disabled",false); 
-
-                                 
-                                 
-                    }
+                    
+                    
+                }
+                
                 )
+                for(let i=1;i<=clashes.length;i++)
+                console.log(clashes[i]);
 
+            clickboxs.click(
+                function() {
+                    
+                    //初始化
+                    for(let i=0;i<clickboxs.length;i++){
+                        $(clickboxs[i]).prop("disabled",false);
+                    }
+                    //如果选中，则和选中冲突的全都不可选择
+                    let len = clickboxs.filter(":checked").length;
+                    //console.log(len);
+                    for(let i=1;i<=len;i++){
+                        let index = $(clickboxs.filter(":checked")[i-1]).parent().siblings(".index").text();
+                        $(clashes[index]).each(
+                            function(){
+                                $(this).prop("disabled",true);
+                            }
+                        )
+
+                    }
+                    
 
 
                 }
