@@ -6,55 +6,61 @@
     <title>去重</title>
 </head>
 <body>
-    <p>[{ id: 9 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }]</p>
-    <button>点我去重</button>
-    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(
             ()=>{
                 const objs = [{ id: 9 }, { id: 8 }, { id: 7 }, { id: 7 }, { id: 7 }, { id: 6 }];
-                $("button").click(
-                    ()=>{
-                       
+                // const objs = [];
+                // for (let i = 0; i < 8_000_000; i++) {
+                //     objs.push({ id: Math.floor(Math.random() * 1_000) })
+                // }
+                            
+                            
+                        // }
+                        //法一：双重嵌套：
+                        // for(let i=0;i<objs.length;i++){
+                        //     for(let j=i+1;j<objs.length;j++){
 
-                        let count = 0;
-                        for(let i=0;i<objs.length;i++){
-                            for(let j=i+1;j<objs.length;j++){
-
-                                if(objs[i].id==objs[j].id)
-                                {
-                                    objs.splice(j,1);
-                                    j--;
-                                }
+                        //         if(objs[i].id==objs[j].id)
+                        //         {
+                        //             objs.splice(j,1);
+                        //             j--;
+                        //         }
                                
                                 
+                        //     }
+                        // }
+                        //法二：使用set集合：
+                        // let arr2=Array.from(new Set(objs.map(JSON.stringify))).map(JSON.parse);
+                        // console.log(arr2);
+                        
+
+                        //法三：创建一个一维数组暂存数据
+                        let arr=[];
+                        
+                        let flag=0;
+                        for(let i=0;i<objs.length;i++){
+                            
+                            for(let j=0;j<arr.length;j++){
+                                if(arr[j].id==objs[i].id)
+                                {
+                                    flag=1;
+                                    break;
+                                }
                             }
+                            if(flag==0)arr.push(objs[i]);
+                            flag=0;
                         }
-                       
-
-                        let result="[";
-                        for(let i=0;i<objs.length;i++)
-                       {
-                         for(let key in objs[i]){
-                            result+="{";
-                            result+=key;
-                            result+=" : ";
-                            result+=objs[i][key];
-                            result+="} ";
-
-                       }
-                        }
-                        result+="]";
-                        //console.log(objs);
-                        $("p").text(result);
+                        console.log(arr);
                         
                         
 
                     }
                 )
 
-            }
-        )
     </script>
    
 </body>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        table,
+    table td,
+    table th {
+        border-collapse: collapse;
+    }
+    
+        table {
+            width: 400px;
+            text-align: center;
+            
+        }
+    
+    table thead {
+        background-color: green;
+    }
+    
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                 <th>#</th>
+                 <th>名称</th>
+                 <th>学分</th>
+                 <th>起止周</th>
+                 <th>时间</th>
+                 <th>教师</th>
+                 <th>操作</th>
+            </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+    </table>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        //const coursesHead = {id:"#",name:"名称",point:"学分",week:"起止周",day:"时间",teacher:"教师",oper}
+        // 模拟课程数据
+    const courses = [
+        {
+            id: 100,
+            name: '数据库原理',
+            point: 3.0,
+            startWeek: 1,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '谭文韬'
+        },
+        {
+            id: 101,
+            name: '影视赏析',
+            point: 1.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李春泰'
+        },
+        {
+            id: 102,
+            name: 'Web系统框架',
+            point: 2.5,
+            startWeek: 11,
+            endWeek: 17,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '王子阳'
+        },
+        {
+            id: 103,
+            name: '托福阅读',
+            point: 2.0,
+            startWeek: 5,
+            endWeek: 15,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李景阳'
+        },
+        {
+            id: 104,
+            name: 'Web开发技术',
+            point: 2.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '徐懿'
+        },
+        {
+            id: 105,
+            name: '高级英语视听',
+            point: 2.0,
+            startWeek: 3,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '龙超悦'
+        }
+    ]
+    for(let i=0;i<courses.length;i++){
+
+    }
+
+    </script>
+
+</body>
+</html>

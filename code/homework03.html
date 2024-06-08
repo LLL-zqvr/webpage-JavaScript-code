@@ -52,7 +52,8 @@
         } */
 
     </style>
-    <script src="https://cdn.staticfile.net/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(
             () => {
@@ -63,7 +64,7 @@
                     //同级的ul滑动切换
                     ul.slideToggle();
                     //其他级别的全部滑上
-                    $(".sidbar-group > ul").not(ul).slideUp();
+                    $(".sidebar-group > ul").not(ul).slideUp();
                 }
             )
             }
