@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        table,
+    table td,
+    table th {
+        border-collapse: collapse;
+    }
+    
+        table {
+            width: 800px;
+            text-align: center;
+            
+        }
+    
+    table thead {
+        background-color: green;
+    }
+    
+    </style>
+</head>
+<body id="body">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>学分</th>
+                <th>起止周</th>
+                <th>时间</th>
+                <th>节数</th>
+                <th>教师</th>
+                <th>操作</th>
+           </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        
+    </table>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+    // 模拟课程数据
+    const courses = [
+        {
+            id: 100,
+            name: '数据库原理',
+            point: 3.0,
+            startWeek: 1,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '谭文韬'
+        },
+        {
+            id: 101,
+            name: '影视赏析',
+            point: 1.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李春泰'
+        },
+        {
+            id: 102,
+            name: 'Web系统框架',
+            point: 2.5,
+            startWeek: 11,
+            endWeek: 17,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '王子阳'
+        },
+        {
+            id: 103,
+            name: '托福阅读',
+            point: 2.0,
+            startWeek: 5,
+            endWeek: 15,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李景阳'
+        },
+        {
+            id: 104,
+            name: 'Web开发技术',
+            point: 2.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '徐懿'
+        },
+        {
+            id: 105,
+            name: '高级英语视听',
+            point: 2.0,
+            startWeek: 3,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '龙超悦'
+        }
+    ]
+    let datas = courses;
+    // 通过标签名定位到指定写入标签
+     let tbody = document.getElementsByTagName("tbody")[0];
+    // console.log(tbody);
+    //写入数据
+    for(let i=0;i<courses.length;i++){
+        
+        let row = `
+        <tr>
+                <td class="index">${datas[i].id}</td>
+                <td>${datas[i].name}</td>
+                <td>${datas[i].point}</td>
+                <td>${datas[i].startWeek} - ${datas[i].endWeek}</td>
+                <td>${datas[i].dayOfWeek}</td>
+                <td>${datas[i].period}</td>
+                <td>${datas[i].teacherName}</td>
+                <td class="check"><input type="checkbox" name="items"></td>
+               
+                
+	    </tr>
+            `
+            
+         tbody.innerHTML +=row;
+        
+
+    }
+    
+    // for(let i=0;i<datas.length;i++){
+    //                     console.log("***********");
+    //                     console.log(datas[i]);
+    //                 }
+    for(let i=0;i<datas.length;i++){
+        let checkbox = document.getElementsByClassName("check")[i].children[0];
+        datas[i].operation=checkbox;
+         
+    }
+    //分析~
+    $(document).ready(
+        () => {
+
+                    //创建一维数组
+                    let clashes = [];
+                    
+                    //在一维数组的基础上创建二维数组
+                    let index;
+                    for(let i=0;i<datas.length;i++)
+                    {
+                        index=datas[i].id;
+                        clashes[index]=[];
+                    }
+                //console.log(courses.length);
+                    let count = 0;
+                   
+                    for(let i=0;i<datas.length;i++){
+                        let obj = datas[i];
+                        count=0;
+                        for(let j=0;j<datas.length;j++){
+                            if(obj!=datas[j])
+                            {
+                                if(
+                                    (obj.startWeek<datas[j].endWeek&&obj.endWeek>datas[j].startWeek)
+                                    &&(obj.dayOfWeek==datas[j].dayOfWeek)
+                                    &&(obj.period==datas[j].period)
+                                )
+                                clashes[datas[i].id][count++]=datas[j].operation;
+                              
+                             
+
+                            }
+                        }
+                    }
+                    for(let i=0;i<datas.length;i++){
+                        console.log("***********");
+                        console.log(clashes[datas[i].id]);
+                    }
+
+            let clickboxs = $("input[name=items]");
+            clickboxs.click(
+                function() {
+                    
+                    //初始化
+                    for(let i=0;i<clickboxs.length;i++){
+                        $(clickboxs[i]).prop("disabled",false);
+                    }
+                    //如果选中，则和选中冲突的全都不可选择
+                    let len = clickboxs.filter(":checked").length;
+                    //console.log(len);
+                    for(let i=1;i<=len;i++){
+                        let index = $(clickboxs.filter(":checked")[i-1]).parent().siblings(".index").text();
+                        //console.log(index);
+                        $(clashes[index]).each(
+                            function(){
+                                $(this).prop("disabled",true);
+                            }
+                        )
+
+                    }
+                    
+
+
+                }
+            );
+        }
+    );
+</script>
+
+
+    </script>
+
+</body>
+</html>

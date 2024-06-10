@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        table,
+    table td,
+    table th {
+        border-collapse: collapse;
+    }
+    
+        table {
+            width: 800px;
+            text-align: center;
+            
+        }
+    
+    table thead {
+        background-color: green;
+    }
+    
+    </style>
+</head>
+<body id="body">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>学分</th>
+                <th>起止周</th>
+                <th>时间</th>
+                <th>节数</th>
+                <th>教师</th>
+                <th>操作</th>
+           </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        
+    </table>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+    // 模拟课程数据
+    const courses = [
+        {
+            id: 100,
+            name: '数据库原理',
+            point: 3.0,
+            startWeek: 1,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '谭文韬'
+        },
+        {
+            id: 101,
+            name: '影视赏析',
+            point: 1.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李春泰'
+        },
+        {
+            id: 102,
+            name: 'Web系统框架',
+            point: 2.5,
+            startWeek: 11,
+            endWeek: 17,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '王子阳'
+        },
+        {
+            id: 103,
+            name: '托福阅读',
+            point: 2.0,
+            startWeek: 5,
+            endWeek: 15,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李景阳'
+        },
+        {
+            id: 104,
+            name: 'Web开发技术',
+            point: 2.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '徐懿'
+        },
+        {
+            id: 105,
+            name: '高级英语视听',
+            point: 2.0,
+            startWeek: 3,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '龙超悦'
+        }
+    ]
+    
+    // 通过标签名定位到指定写入标签
+     let tbody = document.getElementsByTagName("tbody")[0];
+    // console.log(tbody);
+    //先用模板字符串写入数据
+    for(let i=0;i<courses.length;i++){
+        
+        let row = `
+        <tr>
+                <td class="index">${courses[i].id}</td>
+                <td>${courses[i].name}</td>
+                <td>${courses[i].point}</td>
+                <td class="week">${courses[i].startWeek} - ${courses[i].endWeek}</td>
+                <td class="day">${courses[i].dayOfWeek}</td>
+                <td class="period">${courses[i].period}</td>
+                <td>${courses[i].teacherName}</td>
+                <td class="check"><input type="checkbox" name="items"></td>
+                    
+	    </tr>
+            `
+        //将每一行都加入到tbody中
+         tbody.innerHTML +=row;
+        
+
+    }
+    
+    //分析~
+    $(document).ready(
+            
+            ()=>{
+                let clickboxs = $("input[name=items]");
+                //创建缓存
+                let buffer = [];
+            clickboxs.click(
+                function(){
+                    //初始化
+                    for(let i=0;i<clickboxs.length;i++){
+                        $(clickboxs[i]).prop("disabled",false);
+                    }
+                    //先找到被点击的是哪门课程(课程通过index来区分),将操作与相应课程绑定
+                    let checkedCourse;
+                    let index = $(this).parent().siblings(".index").text();
+                    for(let i=0;i<courses.length;i++){
+                        if(courses[i].id==index)
+                        {
+                            courses[i].operation=this;
+                            //记录下该课程
+                            checkedCourse = courses[i];
+                            break;
+                        }
+                    }
+                    console.log(checkedCourse);
+                    //处理未点击的课程
+                     //将操作和相应课程绑定(每点一次就要绑一堆，这里需要优化吗？)
+                    clickboxs.not(":checked").each(
+                        (number)=>{
+                           
+                            console.log(number);
+                            let checkbox = clickboxs.not(":checked")[number];
+                            let index = $(checkbox).parent().siblings(".index").text();
+                            for(let i=0;i<courses.length;i++){
+                                if(courses[i].id==index)
+                                {   
+                                    courses[i].operation=checkbox;
+                                    break;
+                                }
+                                
+                            }
+                            
+                        }
+                    )
+                    console.log(courses);
+                    //如果缓存中没有相应记录则加入，有则直接使用    
+                    for(let i=0;i<buffer.length;i++){
+                        if(checkedCourse.id==buffer[i])
+                        {
+                            $(buffer[i]).each().prop("disabled",false);
+                            break;
+                        }
+                        //若没有：
+                        //创建数组arr封装与点击课程有冲突的课程的checkbox
+                    else {
+                        let arr = clickboxs.not(":checked").filter(
+                                (number)=>{
+                                    let notCheckbox = clickboxs.not(":checked")[number];
+                                    let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
+                                    let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
+                                    
+                                    return (checkedCourse.startWeek<endWeek&&checkedCourse.endWeek>beginWeek);
+                                    
+                                }
+
+                            ).filter(
+                                (number)=>{
+                                    let notCheckbox = clickboxs.not(":checked")[number];
+
+                                    let day = $(notCheckbox).parent().siblings(".day").text();
+        
+                                    return checkedCourse.dayOfWeek==day;
+                                    
+                                }
+
+                            ).filter(
+                                (number)=>{
+                                    let notCheckbox = clickboxs.not(":checked")[number];
+                                    let period = $(notCheckbox).parent().siblings(".period").text();
+                                    
+                                    return checkedCourse.period==period;
+                                    
+                                }
+
+                            )
+                            console.log(arr);
+                            //加入缓存数据
+                            buffer.push(arr);
+                    }
+                }
+                    
+                            
+
+                }
+
+                
+
+            )
+
+            }
+        
+    );
+</script>
+
+
+    </script>
+
+</body>
+</html>

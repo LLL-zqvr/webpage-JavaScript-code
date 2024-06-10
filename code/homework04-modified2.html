@@ -30,47 +30,27 @@
     </style>
 </head>
 <body id="body">
-    
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>学分</th>
+                <th>起止周</th>
+                <th>时间</th>
+                <th>节数</th>
+                <th>教师</th>
+                <th>操作</th>
+           </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        
+    </table>
     
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        //创建表，表头，表本体
-    let table = document.createElement("table");
-    let thead = document.createElement("thead");
-    let tbody = document.createElement("tbody");
-    table.appendChild(thead);
-    table.appendChild(tbody);
-    document.getElementById("body").appendChild(table);
-        
-    //表头数据
-    const coursesHead = {id:"#",name:"名称",point:"学分",week:"起止周",day:"时间",period:"节数",teacher:"教师",operation:"操作"};
-    //将表头数据写入
-    let row = document.createElement("tr");
-    thead.appendChild(row);
-    let headDate_1=document.createElement("th");
-    row.appendChild(headDate_1);
-    headDate_1.innerHTML=coursesHead.id;
-    let headDate_2=document.createElement("th");
-    row.appendChild(headDate_2);
-    headDate_2.innerHTML=coursesHead.name;
-    let headDate_3=document.createElement("th");
-    row.appendChild(headDate_3);
-    headDate_3.innerHTML=coursesHead.point;
-    let headDate_4=document.createElement("th");
-    row.appendChild(headDate_4);
-    headDate_4.innerHTML=coursesHead.week;
-    let headDate_5=document.createElement("th");
-    row.appendChild(headDate_5);
-    headDate_5.innerHTML=coursesHead.day;
-    let headDate_6=document.createElement("th");
-    row.appendChild(headDate_6);
-    headDate_6.innerHTML=coursesHead.period;
-    let headDate_7=document.createElement("th");
-    row.appendChild(headDate_7);
-    headDate_7.innerHTML=coursesHead.teacher;
-    let headDate_8=document.createElement("th");
-    row.appendChild(headDate_8);
-    headDate_8.innerHTML=coursesHead.operation;
 
     // 模拟课程数据
     const courses = [
@@ -136,46 +116,101 @@
         }
     ]
     let datas = courses;
+    // 通过标签名定位到指定写入标签
+     let tbody = document.getElementsByTagName("tbody")[0];
+    // console.log(tbody);
     //写入数据
     for(let i=0;i<courses.length;i++){
-        let row = document.createElement("tr");
-        tbody.appendChild(row);
-    let bodyDate_1=document.createElement("td");
-    //添加类
-    bodyDate_1.classList.add("index");
-    row.appendChild(bodyDate_1);
-    bodyDate_1.innerHTML=courses[i].id;
-    let bodyDate_2=document.createElement("td");
-    row.appendChild(bodyDate_2);
-    bodyDate_2.innerHTML=courses[i].name;
-    let bodyDate_3=document.createElement("td");
-    row.appendChild(bodyDate_3);
-    bodyDate_3.innerHTML=courses[i].point;
-    let bodyDate_4=document.createElement("td");
-    row.appendChild(bodyDate_4);
-    bodyDate_4.innerHTML=courses[i].startWeek+" - "+courses[i].endWeek;
-    let bodyDate_5=document.createElement("td");
-    row.appendChild(bodyDate_5);
-    bodyDate_5.innerHTML="周"+courses[i].dayOfWeek;
-    let bodyDate_6=document.createElement("td");
-    row.appendChild(bodyDate_6);
-    bodyDate_6.innerHTML=courses[i].period;
-    let bodyDate_7=document.createElement("td");
-    row.appendChild(bodyDate_7);
-    bodyDate_7.innerHTML=courses[i].teacherName;
-    let bodyDate_8=document.createElement("td");
-    row.appendChild(bodyDate_8);
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.name = "items";
-    bodyDate_8.appendChild(checkbox);
-    datas[i].operation=checkbox;
+        
+        //  let nowRow=document.getElementsByTagName("tbody")[0].getElementsByTagName("tr")[i];
+        //  nowRow.appendChild(operation);
+        //  operation.appendChild(checkbox);
+        //console.log(datas[i].operation);
+        let row = `
+        <tr>
+                <td class="index">${datas[i].id}</td>
+                <td>${datas[i].name}</td>
+                <td>${datas[i].point}</td>
+                <td>${datas[i].startWeek} - ${datas[i].endWeek}</td>
+                <td>${datas[i].dayOfWeek}</td>
+                <td>${datas[i].period}</td>
+                <td>${datas[i].teacherName}</td>
+                <td class="check"><td>
+               
+                
+	    </tr>
+            `
+            tbody.innerHTML +=row;
+        //  let checkbox = document.createElement("input");
+        //  checkbox.type = "checkbox";
+        // checkbox.name = "items";
+        // datas[i].operation=checkbox;
+        //  //let operation=document.createElement("td");
+        
+        // console.log(document.getElementsByClassName("check")[i]);
+        //  document.getElementsByClassName("check")[i].appendChild(datas[i].operation);
+
+         //console.log(datas[i].operation,document.getElementsByClassName("check")[len]);
+        // for(let i=0;i<datas.length;i++){
+        //                 console.log("***********");
+        //                 console.log(datas[i]);
+        //             }
+        //创建一行
+        // let row = document.createElement("tr");
+        // tbody.appendChild(row);
+
+        // bodyDate_1.classList.add("index");
+
+    //     let row = document.createElement("tr");
+    //     console.log(tbody);
+    //     tbody.appendChild(row);
+    // let bodyDate_1=document.createElement("td");
+    // //添加类
+    // bodyDate_1.classList.add("index");
+    // row.appendChild(bodyDate_1);
+    // bodyDate_1.innerHTML=courses[i].id;
+    // let bodyDate_2=document.createElement("td");
+    // row.appendChild(bodyDate_2);
+    // bodyDate_2.innerHTML=courses[i].name;
+    // let bodyDate_3=document.createElement("td");
+    // row.appendChild(bodyDate_3);
+    // bodyDate_3.innerHTML=courses[i].point;
+    // let bodyDate_4=document.createElement("td");
+    // row.appendChild(bodyDate_4);
+    // bodyDate_4.innerHTML=courses[i].startWeek+" - "+courses[i].endWeek;
+    // let bodyDate_5=document.createElement("td");
+    // row.appendChild(bodyDate_5);
+    // bodyDate_5.innerHTML="周"+courses[i].dayOfWeek;
+    // let bodyDate_6=document.createElement("td");
+    // row.appendChild(bodyDate_6);
+    // bodyDate_6.innerHTML=courses[i].period;
+    // let bodyDate_7=document.createElement("td");
+    // row.appendChild(bodyDate_7);
+    // bodyDate_7.innerHTML=courses[i].teacherName;
+    // let bodyDate_8=document.createElement("td");
+    // row.appendChild(bodyDate_8);
+    // let checkbox = document.createElement("input");
+    // checkbox.type = "checkbox";
+    // checkbox.name = "items";
+    // bodyDate_8.appendChild(checkbox);
+    // datas[i].operation=checkbox;
     }
     
     // for(let i=0;i<datas.length;i++){
     //                     console.log("***********");
     //                     console.log(datas[i]);
     //                 }
+    for(let i=0;i<datas.length;i++){
+        let checkbox = document.createElement("input");
+         checkbox.type = "checkbox";
+        checkbox.name = "items";
+        datas[i].operation=checkbox;
+         //let operation=document.createElement("td");
+        
+        //let len = document.getElementsByClassName("check").length-1;
+        console.log(document.getElementsByClassName("check")[i]);
+         document.getElementsByClassName("check")[i].appendChild(datas[i].operation);
+    }
     //分析~
     $(document).ready(
         () => {
