@@ -191,7 +191,7 @@
                     $(buffer).each(
                         number =>{
                             //console.log(number);
-                            if(number==checkedCourse.id){
+                            if(number==checkedCourse.id&&buffer[number]!=null){
                                 flag=1;
                                 //console.log(flag);
                             }
@@ -301,8 +301,9 @@
                     //console.log(buffer[count-1]);
                     buffer[checkedCourse.id]=[];
                     buffer[checkedCourse.id]=arr;
-                    console.log(buffer);
+                   
                             }
+                            console.log(buffer);
                             //初始化
                     for(let i=0;i<clickboxs.length;i++){
                         $(clickboxs[i]).prop("disabled",false);
