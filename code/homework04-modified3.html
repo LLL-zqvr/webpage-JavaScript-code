@@ -150,10 +150,7 @@
                 let buffer = [];
             clickboxs.click(
                 function(){
-                    //初始化
-                    for(let i=0;i<clickboxs.length;i++){
-                        $(clickboxs[i]).prop("disabled",false);
-                    }
+                
                     //先找到被点击的是哪门课程(课程通过index来区分),将操作与相应课程绑定
                     let checkedCourse;
                     let index = $(this).parent().siblings(".index").text();
@@ -163,16 +160,17 @@
                             courses[i].operation=this;
                             //记录下该课程
                             checkedCourse = courses[i];
+
                             break;
                         }
                     }
-                    console.log(checkedCourse);
+                    //console.log(checkedCourse);
                     //处理未点击的课程
                      //将操作和相应课程绑定(每点一次就要绑一堆，这里需要优化吗？)
                     clickboxs.not(":checked").each(
                         (number)=>{
                            
-                            console.log(number);
+                            
                             let checkbox = clickboxs.not(":checked")[number];
                             let index = $(checkbox).parent().siblings(".index").text();
                             for(let i=0;i<courses.length;i++){
@@ -186,53 +184,142 @@
                             
                         }
                     )
-                    console.log(courses);
-                    //如果缓存中没有相应记录则加入，有则直接使用    
-                    for(let i=0;i<buffer.length;i++){
-                        if(checkedCourse.id==buffer[i])
-                        {
-                            $(buffer[i]).each().prop("disabled",false);
-                            break;
+                    //console.log(courses);
+                    //如果缓存中没有相应记录则加入，有则直接使用
+                    let flag=0;
+                    //console.log(buffer);
+                    $(buffer).each(
+                        number =>{
+                            //console.log(number);
+                            if(number==checkedCourse.id){
+                                flag=1;
+                                //console.log(flag);
+                            }
+                        
                         }
-                        //若没有：
-                        //创建数组arr封装与点击课程有冲突的课程的checkbox
-                    else {
+                    )
+                    
+                    //     if(
+                    //         buffer.map(
+                    //     (number)=>{
+                    //         $(buffer[number]).each().parent().siblings(".index")
+                    //     }
+                    // )
+                    //     )
+                    
+                
+                   
+
+                    // let first = courses[0].id;
+                    // let last = courses[courses.length-1].id; 
+                    // //console.log(last);  
+                    // for(let i=first;i<last;i++){
+                    //     if(buffer[i]!=null)
+                    //     {
+                    //         $(buffer[i]).each().prop("disabled",false);
+                    //         console.log(buffer[i]);
+                    //         flag=1;
+                    //         break;
+                    //     }
+                        
+                    // }
+                    //若没有：
+                    //创建数组arr封装与点击课程有冲突的课程的checkbox
+                    
+                    // let count=0;
+                    // if(flag==0)
+                    // {   
+                    //     buffer[count++]=checkedCourse.id;
+                    //     console.log(buffer);
+                    //     let arr = clickboxs.not(":checked").filter(
+                    //             (number)=>{
+                    //                 let notCheckbox = clickboxs.not(":checked")[number];
+                    //                 let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
+                    //                 let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
+                                    
+                    //                 if(checkedCourse.startWeek<endWeek&&checkedCourse.endWeek>beginWeek)
+                    //                 console.log(checkedCourse.startWeek,endWeek,checkedCourse.endWeek,beginWeek);
+                    //                 return (checkedCourse.startWeek<endWeek&&checkedCourse.endWeek>beginWeek);
+                                    
+                    //             }
+
+                    //         ).filter(
+                    //             (number)=>{
+                                   
+                    //                 let notCheckbox = clickboxs.not(":checked")[number];
+                    //                 console.log();
+                    //                 let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
+                    //                 let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
+                    //                 console.log("*********");
+                    //                 console.log(number,beginWeek,endWeek);
+                    //                 let day = $(notCheckbox).parent().siblings(".day").text();
+        
+                    //                 return checkedCourse.dayOfWeek==day;
+                                    
+                    //             }
+
+                    //         ).filter(
+                    //             (number)=>{
+                    //                 let notCheckbox = clickboxs.not(":checked")[number];
+                    //                 let period = $(notCheckbox).parent().siblings(".period").text();
+                    //                 let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
+                    //                 let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
+                    //                 console.log(number,beginWeek,endWeek, checkedCourse.period,period);
+                    //                 return checkedCourse.period==period;
+                    //                 }
+
+                    //         );
+                    //         //console.log(arr);
+                    // //console.log(buffer[count-1]);
+                   
+                    // buffer[count-1]=[];
+                    // buffer[count-1].push(arr);
+                    // console.log(buffer);
+                    //         }
+                   //若没有：
+                    //创建数组arr封装与点击课程有冲突的课程的checkbox
+                    
+                    if(flag==0)
+                    {   
+                        buffer[checkedCourse.id]=checkedCourse.id;
+                        //console.log(buffer);
                         let arr = clickboxs.not(":checked").filter(
                                 (number)=>{
                                     let notCheckbox = clickboxs.not(":checked")[number];
                                     let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
                                     let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
-                                    
-                                    return (checkedCourse.startWeek<endWeek&&checkedCourse.endWeek>beginWeek);
-                                    
-                                }
-
-                            ).filter(
-                                (number)=>{
-                                    let notCheckbox = clickboxs.not(":checked")[number];
-
                                     let day = $(notCheckbox).parent().siblings(".day").text();
-        
-                                    return checkedCourse.dayOfWeek==day;
-                                    
-                                }
-
-                            ).filter(
-                                (number)=>{
-                                    let notCheckbox = clickboxs.not(":checked")[number];
                                     let period = $(notCheckbox).parent().siblings(".period").text();
-                                    
-                                    return checkedCourse.period==period;
+                                    return (checkedCourse.startWeek<endWeek&&checkedCourse.endWeek>beginWeek)
+                                    && (checkedCourse.dayOfWeek==day)
+                                    &&(checkedCourse.period==period);
                                     
                                 }
 
-                            )
-                            console.log(arr);
-                            //加入缓存数据
-                            buffer.push(arr);
+                            ).toArray();
+                            //console.log(arr);
+                    //console.log(buffer[count-1]);
+                    buffer[checkedCourse.id]=[];
+                    buffer[checkedCourse.id]=arr;
+                    console.log(buffer);
+                            }
+                            //初始化
+                    for(let i=0;i<clickboxs.length;i++){
+                        $(clickboxs[i]).prop("disabled",false);
                     }
-                }
-                    
+                    //如果选中，则和选中冲突的全都不可选择
+                    let len = clickboxs.filter(":checked").length;
+                    //console.log(len);
+                    for(let i=1;i<=len;i++){
+                        let index = $(clickboxs.filter(":checked")[i-1]).parent().siblings(".index").text();
+                        //console.log(index);
+                        $(buffer[index]).each(
+                            function(){
+                                $(this).prop("disabled",true);
+                            }
+                        )
+
+                    }
                             
 
                 }
