@@ -131,7 +131,7 @@
                 <td class="day">${courses[i].dayOfWeek}</td>
                 <td class="period">${courses[i].period}</td>
                 <td>${courses[i].teacherName}</td>
-                <td class="check"><input type="checkbox" name="items"></td>
+                <td class="check"><input type="checkbox" name="items" value="${courses[i].id}"></td>
                     
 	    </tr>
             `
@@ -231,7 +231,8 @@
                     // {   
                     //     buffer[count++]=checkedCourse.id;
                     //     console.log(buffer);
-                    //     let arr = clickboxs.not(":checked").filter(
+                    console.log(clickboxs.not(":checked"));
+                    //     let arr =courses.filter(
                     //             (number)=>{
                     //                 let notCheckbox = clickboxs.not(":checked")[number];
                     //                 let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
@@ -285,6 +286,7 @@
                         //console.log(buffer);
                         let arr = clickboxs.not(":checked").filter(
                                 (number)=>{
+                                    console.log(1);
                                     let notCheckbox = clickboxs.not(":checked")[number];
                                     let beginWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[0];
                                     let endWeek = $(notCheckbox).parent().siblings(".week").text().split(' - ')[1];
