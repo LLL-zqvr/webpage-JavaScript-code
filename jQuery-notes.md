@@ -130,7 +130,8 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 ### jQuery 效果
 
 #### 隐藏和显示
-介绍：通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素。
+介绍：
+通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素。
 语法：
 - $(selector).hide(speed,callback);
 - $(selector).show(speed,callback);
@@ -150,8 +151,26 @@ jQuery 语法是通过选取 HTML 元素，并对选取的元素执行某些操�
 - slideToggle()     jQuery slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。
 
 ####  动画
-介绍：jQuery animate() 方法用于创建自定义动画。
+介绍：
+jQuery animate() 方法用于创建自定义动画。
+该方法通过 CSS 样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+只有数字值可创建动画（比如 "margin:30px"）。字符串值无法创建动画（比如 "background-color:red"）。
+提示：请使用 "+=" 或 "-=" 来创建相对动画。
+
 语法：$(selector).animate({params},speed,callback);
+其中：
+- speed	可选。规定动画的速度。
+    可能的值：
+    1. 毫秒
+    2. "slow"
+    3. "fast"
+- easing 可选。规定在动画的不同点中元素的速度。默认值是 "swing"。
+    可能的值：
+    1. "swing" - 在开头/结尾移动慢，在中间移动快
+    2. "linear" - 匀速移动
+    提示：扩展插件中提供更多可用的 easing 函数。
+- callback 可选。
+    1. animate 函数执行完之后，要执行的函数。
 
 ### jquery遍历
 - parent() 返回每个匹配元素的直接父元素。
