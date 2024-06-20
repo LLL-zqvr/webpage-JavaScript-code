@@ -218,7 +218,7 @@
         </div>
             `
         //将每一行都加入到tbody中
-        console.log(row);
+        //console.log(row);
         $("#course-table").append(row);
         
 
@@ -230,6 +230,13 @@
     
     //创建缓存，使用的是map
     const confMap = new Map();
+    //计数器
+    let count = [];
+                        courses.forEach(
+                            c=>{
+                                count[c.id]=0;
+                            }
+                        )
     clickboxs.click(
     function(){
     
@@ -272,11 +279,17 @@
                         
                         //判断状态，看是否是选中状态
                         const ch = $(this).prop("checked");
+                        
                         //缓存中的所有的被选中的操作框的冲突课程全都变成不可选
                         confNodes.forEach(
                             c => {
-                                c.confInput.prop("disabled",ch);
-                                c.confRow.css("opacity", ch ? 0.2 : 1.0);
+                                let id = c.confRow.children()[0].innerHTML;
+                                //console.log("----"+count[id]);
+                                ch ? count[id]++:count[id]--;
+                                //console.log(count[id]);
+                                let result = ch||(count[id]>0);
+                                c.confInput.prop("disabled",result);
+                                c.confRow.css("opacity", result ? 0.2 : 1.0);
                             }
                         )
 
