@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
         * {
-            padding: 0;
             margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
+        
+        /* table,
+    table td,
+    table th {
+        border-collapse: collapse;
+    } */
+    
         .table {
             display: table;
-            width: 100%;
+            width: 600px;
             text-align: center;
+            
         }
-
+        
         .table-header {
             display: table-row;
-            background: #4caf50;
+            background-color: green;
         }
 
         .table-header-cell {
             display: table-cell;
-            font-size: 1.2em;
             padding: 5px;
         }
 
@@ -35,92 +43,99 @@
             padding: 5px;
         }
 
-        .table-row:hover {
-            background-color: #f2f2f2;
+        .table-row:hover{
+            background-color: #a8a6a6;
         }
     </style>
 </head>
 <body>
-<div>
-    <div>
-        模拟响应式禁选课授课时间冲突的课程。
-    </div>
     <div class="table" id="course-table">
         <div class="table-header">
-            <div class="table-header-cell">#</div>
-            <div class="table-header-cell">名称</div>
-            <div class="table-header-cell">学分</div>
-            <div class="table-header-cell">起止周</div>
-            <div class="table-header-cell">时间</div>
-            <div class="table-header-cell">教师</div>
-            <div class="table-header-cell">操作</div>
+                <div class="table-header-cell"> #</div>
+                <div class="table-header-cell">名称</div>
+                <div class="table-header-cell">学分</div>
+                <div class="table-header-cell">起止周</div>
+                <div class="table-header-cell">时间</div>
+                <div class="table-header-cell">节数</div>
+                <div class="table-header-cell">教师</div>
+                <div class="table-header-cell">操作</div>
         </div>
+        
     </div>
-</div>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
 
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        // 初始化并添加数据
-        courses.forEach((c, index) => {
-            const h = `
-                    <div class="table-row">
-                        <div class="table-cell">${index + 1}</div>
-                        <div class="table-cell">${c.name}</div>
-                        <div class="table-cell">${c.point}</div>
-                        <div class="table-cell">${c.startWeek} - ${c.endWeek}</div>
-                        <div class="table-cell">周${c.dayOfWeek} / ${c.period}节</div>
-                        <div class="table-cell">${c.teacherName}</div>
-                        <div class="table-cell"><input type="checkbox" data-courseid="${c.id}"></div>
-                    </div>
-                    `;
-            $("#course-table").append(h);
-        });
-
-        // ---------------------------------------
-
-        // 获取全部数据input组件
-        const courseNodes = $("input[data-courseid]");
-        // 缓存课程对应的冲突组件数组，避免反复查询
-        const confMap = new Map();
-
-        courseNodes.click(function () {
-                const courseId = $(this).data("courseid");
-                let confNodes = confMap.get(courseId);
-
-                // 如果缓存中没有，则遍历比较，将jquery对象存入数组，将数组存入map
-                if (!confNodes) {
-                    confNodes = [];
-                    const course = courses.find(c => c.id === courseId);
-                    courses.filter(c => c !== course)
-                        .filter(c => c.dayOfWeek === course.dayOfWeek)
-                        .filter(c => c.period === course.period)
-                        .filter(c => (course.startWeek >= c.startWeek && course.startWeek <= c.endWeek)
-                            || (course.endWeek >= c.startWeek && course.endWeek <= c.endWeek))
-                        .forEach(c => {
-                            // 直接转jquery对象
-                            const confInput = $(`input[data-courseid=${c.id}]`);
-                            // 获取checkbox父节点，的父节点。即所在行
-                            const confRow = confInput.parent().parent();
-                            // 将input/row均存入
-                            const conflict = {confInput: confInput, confRow: confRow};
-                            confNodes.push(conflict);
-                        })
-
-                    // 将对象存入map缓存
-                    confMap.set(course.id, confNodes)
-                }
-                // 判断选中/取消状态
-                const ch = $(this).prop("checked");
-                confNodes.forEach(c => {
-                    c.confInput.prop("disabled", ch);
-                    c.confRow.css("opacity", ch ? 0.2 : 1.0);
-                })
-            }
-        )
-    })
-
-   // 模拟课程数据
+    // 模拟课程数据
+    const courses = [
+        {
+            id: 100,
+            name: '数据库原理',
+            point: 3.0,
+            startWeek: 1,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '谭文韬'
+        },
+        {
+            id: 101,
+            name: '影视赏析',
+            point: 1.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李春泰'
+        },
+        {
+            id: 102,
+            name: 'Web系统框架',
+            point: 2.5,
+            startWeek: 11,
+            endWeek: 17,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '王子阳'
+        },
+        {
+            id: 103,
+            name: '托福阅读',
+            point: 2.0,
+            startWeek: 5,
+            endWeek: 15,
+            dayOfWeek: 1,
+            period: 12,
+            teacherName: '李景阳'
+        },
+        {
+            id: 104,
+            name: 'Web开发技术',
+            point: 2.5,
+            startWeek: 1,
+            endWeek: 8,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '徐懿'
+        },
+        {
+            id: 105,
+            name: '高级英语视听',
+            point: 2.0,
+            startWeek: 3,
+            endWeek: 10,
+            dayOfWeek: 1,
+            period: 34,
+            teacherName: '龙超悦'
+        }
+    ]
+    
+    
+    //分析~
+    $(document).ready(
+            
+            ()=>{
+                // 模拟课程数据
     const courses = [
         {
             id: 100,
@@ -184,6 +199,105 @@
         }
     ]
 
+
+    //先用模板字符串写入数据
+    //用的是forEach,forEach效率比for高
+    courses.forEach(
+        (c,index) =>{
+        const row = `
+        <div class="table-row">
+                <div class="table-cell">${c.id}</div>
+                <div class="table-cell">${c.name}</div>
+                <div class="table-cell">${c.point}</div>
+                <div class="table-cell">${c.startWeek} - ${c.endWeek}</div>
+                <div class="table-cell">${c.dayOfWeek}</div>
+                <div class="table-cell">${c.period}</div>
+                <div class="table-cell">${c.teacherName}</div>
+                <div class="table-cell"><input type="checkbox" data-courseid="${c.id}"></div>
+                    
+        </div>
+            `
+        //将每一行都加入到tbody中
+        console.log(row);
+        $("#course-table").append(row);
+        
+
+    }
+    )
+        
+    //得到所有的checkbox    
+    let clickboxs = $("input[data-courseid]");
+    
+    //创建缓存，使用的是map
+    const confMap = new Map();
+    clickboxs.click(
+    function(){
+    
+        //先找到被点击的是哪门课程的id
+        let courseId= $(this).data("courseid");
+        
+        //建立数组confNodes,试图通过该id从缓存confMap中找到相应的课程
+        //有则以数组的形式储存所有的缓存数据
+        //另：.get()方法处理返回的对象以得到基础的数组。
+        let confNodes = confMap.get(courseId);
+        
+        //如果缓存中没有相应记录则加入，有则可以直接使用
+        if(!confNodes) {
+            //没错这是个对象数组
+            confNodes = [];
+            //通过id找到相应课程
+            const course = courses.find(c => c.id === courseId);
+            //找和它冲突的课程
+            courses.filter(c => c !== course)
+                        .filter(c => c.dayOfWeek === course.dayOfWeek)
+                        .filter(c => c.period === course.period)
+                        .filter(c => (course.startWeek >= c.startWeek && course.startWeek <= c.endWeek)
+                            || (course.endWeek >= c.startWeek && course.endWeek <= c.endWeek))
+                        .forEach(
+                            c =>{
+                                //得到冲突课程的操作框
+                                const confInput = $(`input[data-courseid=${c.id}]`);
+                                //得到操作框所在行，既整个课程
+                                const confRow = confInput.parent().parent();
+                                //这两个组装成一个对象
+                                const conflict = {confInput:confInput, confRow:confRow};
+                                //丢到对象数组中
+                                confNodes.push(conflict);
+
+                            }
+                        )
+                        //将新鲜出炉的数组丢到map缓存中
+                        confMap.set(course.id,confNodes);
+        }
+                        
+                        //判断状态，看是否是选中状态
+                        const ch = $(this).prop("checked");
+                        //缓存中的所有的被选中的操作框的冲突课程全都变成不可选
+                        confNodes.forEach(
+                            c => {
+                                c.confInput.prop("disabled",ch);
+                                c.confRow.css("opacity", ch ? 0.2 : 1.0);
+                            }
+                        )
+
+                    
+    
+
+        
+
+    }
+
+    
+
+)
+
+}
+        
+    );
 </script>
+
+
+    </script>
+
 </body>
 </html>
