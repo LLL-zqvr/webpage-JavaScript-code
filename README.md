@@ -2,7 +2,7 @@
 
 ### Introductions
 
-主要记录有关网页开发的代码。其中多为JavaScript，Jquery（CSS在本库仅为辅助作用，若想查看其实际、详细的介绍和运用请移步本人的另一仓库——webpage-code，里面对常用的CSS属性都有着专门的针对性的练习（￣︶￣））。
+主要记录有关网页开发的代码。其中多为JavaScript，Jquery（CSS在本库仅为辅助作用，若想查看其实际、详细的介绍和运用请移步本人的另一仓库——webpage-CSS-code，里面对常用的CSS属性都有着专门的针对性的练习（￣︶￣））。
 
 
 ### Development Environments
