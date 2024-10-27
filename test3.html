@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script >
+   $(document).ready(function(){
+      $("p").click(
+         function() {
+           console.log("******");
+         }
+      )
+    $(":image").click(function(){
+    var v=$(this).val();
+    var computer=1+Math.floor(Math.random()*3);
+console.log(v +"-----" + computer);
+ //参考其他程序把它完善
+});   
+
+ });
+
+</script>
+</head>
+
+<body>
+<div>
+   <p>
+      sdfdfs
+   </p>
+
+<input type="image" value="1" style="width:60px;height:60px" src="./image/石头.png" />
+
+<input type="image" value="2" style="width:60px;height:60px" src="./image/剪刀.png" />
+
+<input type="image" value="3" style="width:60px;height:60px" src="./image/布.png" /><br>
+
+
+</div>
+<!-- 
+
+
+<ol>
+
+<li>this is 1</li>
+
+</ol> -->
+
+</body>
+
+</html>
